@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Chars {
+public class z5 {
 
     public static void main(String[] args) {
         char[]c={'.',',','-',':',';','?','!'};
