@@ -1,117 +1,53 @@
-import java.util.*;
-
-
-public class z2 {
+public class z2
+{
+    // не соображу как реализовать подсчет количество четырехугольников разного типа :с
     public static void main(String[] args) {
-        Date.Day day = new Date.Day();
-        Date.Month month = new Date.Month();
-        class Date {
-            void test() {
-                Date date = new Date();
-            }
-        date.test();
-
-            class Year {
-
-                public void bissextile() {
-
-                    Scanner input = new Scanner(System.in);
-                    int year = input.nextInt();
-                    if (year % 4 == 0) {
-                        if (year % 100 == 0) {
-                            if (year % 400 == 0) {
-                                System.out.println("bissextile");
-                            }
-                        }
-                    } else {
-                        System.out.println("not bissextile");
-                    }
-                    Year yearO = new Year();
-                    yearO.bissextile();
-                }
-            }
+        Quadrangle q1 = new Quadrangle(4,6,7,9);
+        System.out.println(q1.toString());
+        q1.solve();
+        Rectangle r1 = new Rectangle(2,4,2,4);
+        System.out.println(r1.isQuadrangle());
+        if(r1.isQuadrangle()){
+            System.out.println("Площадь = "+r1.solveSquare()+", Периметр = "+r1.solvePer());
         }
-        class Month {
+    }
+}
 
-            public int getDays() {
-                Scanner input = new Scanner(System.in);
-                int month = 0;
-                String error;
-                System.out.println("Input the number of the month");
-                input = new Scanner(System.in);
-                int monthNum = input.nextInt();
-                switch (monthNum) {
+class Quadrangle{
+    double a;
+    double b;
+    double c;
+    double d;
+    public Quadrangle(double a,double b,double c,double d){
+        this.a=a;
+        this.b=b;
+        this.c=c;
+        this.d=d;
+    }
+    public void solve(){
+        double dig = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+        System.out.println("Диагональ ="+dig);
 
-                    case 1:
-                        month = 31;
-                        break;
-                    case 2:
-                        month = 28;
-                        break;
-                    case 3:
-                        month = 31;
-                        break;
-                    case 4:
-                        month = 30;
-                        break;
-                    case 5:
-                        month = 31;
-                        break;
-                    case 6:
-                        month = 30;
-                        break;
-                    case 7:
-                        month = 31;
-                        break;
-                    case 8:
-                        month = 31;
-                        break;
-                    case 9:
-                        month = 30;
-                        break;
-                    case 10:
-                        month = 31;
-                        break;
-                    case 11:
-                        month = 30;
-                        break;
-                    case 12:
-                        month = 31;
-                        break;
-                    default:
-                        error = "неправильный номер";
-                        break;
-                }
-                return month;
-            }
-        }
+    }
+    public String toString(){
+        return "Координаты = " + a + " , "+ b + " , "+ c + " , "+ d;
+    }
+}
 
+class Rectangle extends Quadrangle{
+    public Rectangle(double a,double b,double c,double d){
+        super(a,b,c,d);
+    }
+    boolean isQuadrangle(){
+        if(a ==c && b == d)return true;
+        return false;
+    }
 
-        class Day {
-            public String dayOfTheWeek() {
-                Scanner input = new Scanner(System.in);
-                String day = "";
-                input = new Scanner(System.in);
-                int weekDayNum = input.nextInt();
+    double solveSquare(){
+        return a*b;
+    }
 
-                switch (weekDayNum) {
-                    case 1:
-                        day = "Понедельник";
-                    case 2:
-                        day = "Вторник";
-                    case 3:
-                        day = "Среда";
-                    case 4:
-                        day = "Четверг";
-                    case 5:
-                        day = "Пятница";
-                    case 6:
-                        day = "Суббота";
-                    case 7:
-                        day = "Воскресенье";
-                }
-                return day;
-            }
-        }
+    double solvePer(){
+        return 2*(a+b);
     }
 }
