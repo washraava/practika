@@ -1,4 +1,4 @@
-public class z2
+public class z3
 {
     // не соображу как реализовать подсчет количество четырехугольников разного типа :с
     public static void main(String[] args) {
