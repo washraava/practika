@@ -1,36 +1,42 @@
-import java.util.Scanner;
-import java.util.*;
-
 public class z1 {
-    public void z1() {
-        Scanner scan = new Scanner(System.in);
-        int n = Integer.parseInt(scan.nextLine());
-        Integer[][] matrix = new Integer[n][n + 1];
-        int sum;
-
-        for (int i = 0; i < n; i++) {
-            sum = 0;
-            for (int j = 1; j <= n; j++) {
-                matrix[i][j] = scan.nextInt();
-                sum += matrix[i][j];
-            }
-            matrix[i][0] = sum;
-        }
-
-        List<Integer[]> matrixList = Arrays.asList(matrix);
-        Collections.sort(matrixList, new Comparator<Integer[]>() {
-            public int compare(Integer[] o1, Integer[] o2) {
-                return o1[0] - o2[0];
-            }
-        });
-
-        System.out.println(n);
-        for (int i = 0; i < n; i++) {
-            for (int j = 1; j <= n; j++) {
-                System.out.print(matrix[i][j] + "\t");
-            }
-            System.out.print ("sum = " + matrix[i][0] + "\t");
+    public static void main(String[] args) {
+        int[][] mat = new int[][]{{5, 5, 5, 5}, {3, 3, 3, 3}, {1, 1, 1, 1}, {4, 4, 4, 4}, {2, 2, 2, 2}};
+        for(int i = 0; i < mat.length; ++i){
+            for(int j = 0; j < mat[0].length; ++j)
+                System.out.print(mat[i][j] + " ");
             System.out.println();
+        }
+        System.out.println();
+
+        int i, j; // Сортируем массив
+        int[] sum = new int[mat.length];
+        for (i = 0; i < mat.length; ++i) {
+            sum[i] = 0;
+            for (j = 0; j < mat[0].length; ++j)
+                sum[i] += mat[i][j];
+        }
+        int k;
+        for (i = 0; i < mat.length; ++i) {
+            k = i;
+            for (j = i + 1; j < mat.length; ++j) {
+                if (sum[j] < sum[k])
+                    k = j;
+            }
+            if(k != i){
+                int tmp = sum[k];
+                sum[k] = sum[i];
+                sum[i] = tmp;
+                for(j = 0; j < mat[0].length; ++j) {
+                    int tmp2 = mat[k][j];
+                    mat[k][j] = mat[i][j];
+                    mat[i][j] = tmp2;
+                }
+            }
+        }
+        for(i = 0; i < mat.length; ++i){
+            for(j = 0; j < mat[0].length; ++j)
+                System.out.print(mat[i][j] + " ");
+            System.out.println(); // Вывод результата
         }
     }
 }
