@@ -29,7 +29,7 @@ public class z1 {
             for (int j = 1; j <= n; j++) {
                 System.out.print(matrix[i][j] + "\t");
             }
-            //System.out.print ("sum = " + matrix[i][0] + "\t");
+            System.out.print ("sum = " + matrix[i][0] + "\t");
             System.out.println();
         }
     }
